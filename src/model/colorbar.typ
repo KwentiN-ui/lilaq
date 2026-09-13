@@ -109,17 +109,6 @@
         }
       }
     }
-    
-    // Add the boundary rect to enforce diagram limits precisely
-    
-    grad.push(rect(
-      if orientation == "vertical" { 0% } else { cinfo.min },
-      if orientation == "vertical" { cinfo.min } else { 0% },
-      width: if orientation == "vertical" { 100% } else { cinfo.max - cinfo.min },
-      height: if orientation == "vertical" { cinfo.max - cinfo.min } else { 100% },
-      fill: none,
-      stroke: none,
-    ))
   } else if is-line-contour {
     // For unfilled contour plots, we draw discrete lines at the specific levels.
     // The stroke styling (e.g. thickness) is inherited from the plot's general stroke 
@@ -142,16 +131,6 @@
         grad.push(vlines(level, stroke: merged))
       }
     }
-    
-    // Add an invisible bounding box to force the diagram axes to span the full [min, max] range
-    grad.push(rect(
-      if orientation == "vertical" { 0% } else { cinfo.min },
-      if orientation == "vertical" { cinfo.min } else { 0% },
-      width: if orientation == "vertical" { 100% } else { cinfo.max - cinfo.min },
-      height: if orientation == "vertical" { cinfo.max - cinfo.min } else { 100% },
-      fill: none,
-      stroke: none,
-    ))
   } else {
     // Standard continuous colorbar for plots like scatter or colormesh
     if orientation == "vertical" {
@@ -186,6 +165,7 @@
       xaxis: (ticks: none),
       yaxis: (position: right, mirror: (:)),
       yscale: cinfo.norm,
+      ylim: (cinfo.min, cinfo.max),
       ylabel: label
     )
   } else if orientation == "horizontal" {
@@ -194,6 +174,7 @@
       yaxis: (ticks: none),
       xaxis: (position: bottom, mirror: (:)),
       xscale: cinfo.norm,
+      xlim: (cinfo.min, cinfo.max),
       xlabel: label
     )
   } else {

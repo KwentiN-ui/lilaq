@@ -37,7 +37,7 @@
 #let y = lq.linspace(-2 * calc.pi, 2 * calc.pi)
 #let fun(x, y) = { calc.sin(x) + calc.cos(y) }
 #let levels = (-1, 0.7, 0.3, 0.5, 1)
-#let contourplt_filled = lq.contour(
+#let contourplt-filled = lq.contour(
   x,
   y,
   fun,
@@ -46,7 +46,7 @@
   fill: true,
   levels: levels,
 )
-#let contourplt_lines = lq.contour(
+#let contourplt-lines = lq.contour(
   x,
   y,
   fun,
@@ -57,13 +57,13 @@
   stroke: 1pt,
 )
 
-#lq.colorbar(contourplt_filled, orientation: "horizontal", label: [`filled:true`])
+#lq.colorbar(contourplt-filled, orientation: "horizontal", label: [`filled:true`])
 #pagebreak()
 
-#lq.colorbar(contourplt_lines, orientation: "horizontal", label: [`filled:false`])
+#lq.colorbar(contourplt-lines, orientation: "horizontal", label: [`filled:false`])
 #pagebreak()
 
-#lq.colorbar(contourplt_filled, orientation: "vertical", label: [`filled:true`])
+#lq.colorbar(contourplt-filled, orientation: "vertical", label: [`filled:true`])
 #pagebreak()
 
-#lq.colorbar(contourplt_lines, orientation: "vertical", label: [`filled:false`])
+#lq.colorbar(contourplt-lines, orientation: "vertical", label: [`filled:false`])
